@@ -6,14 +6,10 @@ const btnfileimg = document.querySelector("#btnclosefile");
 inputfile.addEventListener("change", () => {
   const frmindex = inputfile.files[0]; // todo seçilen dosyayı alma
   if (frmindex) {
-    const reader = new FileReader(); // todo seçilen dosyaları okuma
-    reader.onload = (e) => {
-      // todo dosya okundugunda tetiklenir.
-      img.title = "Resmi Tam Ekran Olarak Görüntülemek İçin Tıklayınız.";
-      img.className = "img-thumbnail";
-      img.src = e.target.result; // todo seçilen dosyanın url sini döner.
-    };
-    reader.readAsDataURL(frmindex);
+    img.title = "Resmi Tam Ekran Olarak Görüntülemek İçin Tıklayınız.";
+    img.className = "img-thumbnail";
+    img.src = URL.createObjectURL(frmindex); // todo geçici link oluşturarak resim okuma
+    URL.revokeObjectURL(frmindex);
   }
 });
 
@@ -34,3 +30,4 @@ img.addEventListener("click", () => {
     img.requestFullscreen(); // todo tıklanan resmi tam ekran yapar
   }
 });
+
