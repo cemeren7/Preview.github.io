@@ -34,9 +34,8 @@ btnfileimg.addEventListener("click", () => {
 });
 
 img.addEventListener("click", () => {
-  if (img.requestFullscreen) {
-    img.requestFullscreen();
-  }
+  if (!document.fullscreenElement) img.requestFullscreen();
+  else document.exitFullscreen();
 });
 
 document.body.addEventListener("keydown", (e) => {
@@ -51,8 +50,7 @@ document.body.addEventListener("keydown", (e) => {
     e.preventDefault();
   }
   if (e.key === "F" || e.key === "f") {
-    if (img.requestFullscreen) {
-      img.requestFullscreen();
-    }
+    if (!document.fullscreenElement) img.requestFullscreen();
+    else document.exitFullscreen();
   }
 });
